@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/shaozecai/dnwe-cli/issues"
   },
+  "bin":{
+    "dnwe":"./index.js"
+  },
   "homepage": "https://github.com/shaozecai/dnwe-cli#readme"
 }
