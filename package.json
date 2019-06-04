@@ -1,0 +1,19 @@
+{
+  "name": "dnwe-cli",
+  "version": "1.0.0",
+  "description": "vue 项目脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaozecai/dnwe-cli.git"
+  },
+  "author": "shaozecai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaozecai/dnwe-cli/issues"
+  },
+  "homepage": "https://github.com/shaozecai/dnwe-cli#readme"
+}
