@@ -19,7 +19,7 @@ process.argv.slice(2).forEach((item)=>{
     }
 });
 if(config.init){
-
+    console.log('init');
 }else if(config.v){
     console.log('当前使用dnwe-cli版本为：'+require('./package').version)
 }else if(config.h){
