@@ -1,4 +1,5 @@
-#!node
+#! node
+//使用node执行文件
 
 var fs = require('fs');
 var path = require('path');
