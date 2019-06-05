@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <img class="logo" src="../../assets/images/logo.png" alt="">
+        <img class="logo" src="../../images/logo.png" alt="">
         <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
@@ -8,7 +8,7 @@
         @select="handleSelect"
         background-color="#3c3a39"
         text-color="#fff"
-        active-text-color="#ffd04b" v-for="(item) in store.state.menusAll" :key="item.id">
+        active-text-color="#ffd04b" v-for="(item) in $t('menuData')" :key="item.id">
             <!-- 一级导航 -->
             <el-menu-item v-if="!item.subList" v-bind:index="item.id">
                 <router-link :to="item.url">{{item.name}}</router-link>
@@ -38,31 +38,47 @@
             </el-submenu>
 
         </el-menu>
+        <el-dropdown @command="changeLang" class="lang-select" trigger="hover" title="切换语言">
+            <span><span>{{ langLabel }}</span><i class="el-icon-arrow-down"></i></span>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="item in langList" :command="item.key" :key="item.key" :class="{'item-selected' :lang == item.key}">{{ item.label }}</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
     </el-container>
 </template>
 
 <script>
-    import store from './store'
+    import i18n from './i18n/index'
     export default
         {
             data() {
                 return {
                     activeIndex: 'F001',
-                    store:store
+                    lang: this.$store.state.lang,
+                    langList: this.$store.state.langList,
+                   
                 };
             },
             methods: {
+                changeLang(val){
+                    this.$store.commit('setLang',val);
+                    this.lang = val;
+                },
                 handleSelect(key, keyPath) {
                     this.activeIndex = key;
                 }
             },
             computed:{
-                products(){
-                    return this.$store;
+                langLabel(){
+                    let arr = this.langList.filter(item=>{
+                        return item.key == this.lang
+                    });
+                    return arr.length ? arr[0].label : '中文'
                 }
             },
             created(){
-               
+               this.$i18n.add('zh-CN',i18n['zh-CN']);
+               this.$i18n.add('en',i18n['en']);
             }
         }
 </script>
@@ -85,5 +101,18 @@
         height: 42px;
         margin-top: 9px;
         margin-right: 20px;
+    }
+    .lang-select.el-dropdown{
+        cursor: pointer;
+        float: right;
+        padding: 0 10px;
+        position: absolute;
+        right: 10px;
+    }
+    .el-dropdown-menu{
+        margin: 0;
+    }
+    .el-dropdown-menu__item.item-selected{
+        background-color: #dddddd
     }
 </style>

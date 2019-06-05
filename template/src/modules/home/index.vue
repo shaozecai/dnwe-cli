@@ -1,10 +1,12 @@
 <template>
     <div class="home_page">
-        Home Page
+        {{ $t("pageTitle") }}
     </div>
 </template>
 
 <script>
+import i18n from './i18n/index'
+import { constants } from 'fs';
 export default {
     name:'home',
     data(){
@@ -17,9 +19,9 @@ export default {
 
     },
     created(){
-        let arr = [{text:'首页',url:'/'}]
-        this.$store.commit('setBreadcrumbs',arr);
-        this.$store.commit('setPageTitle','首页');
+        this.$i18n.add('zh-CN',i18n['zh-CN'])
+        this.$i18n.add('en',i18n['en'])
+        this.$store.commit('setPageTitle',this.$t('pageTitle'));
     }
 }
 </script>

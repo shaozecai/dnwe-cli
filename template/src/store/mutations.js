@@ -4,6 +4,11 @@
 import Vue from 'vue'
 
 export default {
+    //  设置语言
+    setLang(state,payload){
+        state.lang = payload
+        Vue.i18n ? Vue.i18n.set(payload) : false;
+    },
     // 页面跳转
     gotoPage(state,route){
         state.globalRouter = route

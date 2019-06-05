@@ -22,18 +22,51 @@
 
 <script>
 import Vue from 'vue'
-import dnweHeader from './components/dnwe_header'
-import dnweAside from './components/dnwe_aside'
-import dnweBreadcrumb from './components/dnwe_breadcrumb'
+import Locale from 'element-ui/lib/locale'
+import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
+import enLocale from 'element-ui/lib/locale/lang/en'
+import dnweHeader from './public/modules/dnwe_header'
+import dnweAside from './public/modules/dnwe_aside'
+import dnweBreadcrumb from './public/modules/dnwe_breadcrumb'
+
+import i18n from './local/index'
+import { constants } from 'fs';
+
+const localeChange = lang =>{
+  switch (lang){
+    case 'zh-CN':
+      Locale.use(zhLocale)
+      break;
+    case 'en':
+      Locale.use(enLocale)
+      break;
+    default:
+      Locale.use(zhLocale)
+  }
+}
+
 export default {
   name: 'Main',
+  data(){
+    return {
+      lang:this.$store.state.lang
+    }
+  },
   components:{
     dnweHeader,
     dnweAside,
     dnweBreadcrumb
   },
+  watch:{
+    lang(newVal, oldVal){
+      if(!newVal || newVal == 'undefined'){
+        newVal = 'zh-CN'
+      }
+      localeChange(newVal);
+    }
+  },
   created(){
-    
+    this.$store.commit('setLang','zh-CN');
   }
 }
 </script>

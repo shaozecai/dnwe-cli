@@ -1,6 +1,6 @@
 <template>
     <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item v-for="(item,index) in state.breadcrumbs" :key="index" :to="{ path: item.url }">{{item.text}}</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(item,index) in $t('breadcrumbs')" :key="index" :to="{ path: item.url }">{{item.text}}</el-breadcrumb-item>
         
     </el-breadcrumb>
 </template>
@@ -10,10 +10,10 @@
 export default {
     data(){
       return {
-        state:this.$store.state
+        state: this.$store.state
       }
     },
-     methods: {
+    methods: {
       
     },
     created(){

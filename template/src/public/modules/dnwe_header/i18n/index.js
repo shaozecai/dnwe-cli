@@ -1,0 +1,85 @@
+const menuDataZh = [
+    {
+        id:'F001',
+        name:'首页',
+        url:'/'
+    },
+    {
+        id:'F002',
+        name:'GitHub',
+        url:'/github'
+    },
+    {
+        id:'F003',
+        name:'手帐体系',
+        subList:[
+            {
+                id:'S3001',
+                name:'阅读',                
+                url:'/read'
+            },
+            {
+                id:'S3002',
+                name:'笔记',
+                url:'/note'
+            },
+            {
+                id:'S3003',
+                name:'总结',
+                url:'/sum'
+            }
+        ]
+    },
+    {
+        id:'F004',
+        name:'关于',
+        url:'/about' 
+    }
+];
+const menuDataEn = [
+    {
+        id:'F001',
+        name:'Home',
+        url:'/'
+    },
+    {
+        id:'F002',
+        name:'GitHub',
+        url:'/github'
+    },
+    {
+        id:'F003',
+        name:'Handbook',
+        subList:[
+            {
+                id:'S3001',
+                name:'Read',                
+                url:'/read'
+            },
+            {
+                id:'S3002',
+                name:'Note',
+                url:'/note'
+            },
+            {
+                id:'S3003',
+                name:'Summary',
+                url:'/sum'
+            }
+        ]
+    },
+    {
+        id:'F004',
+        name:'About',
+        url:'/about' 
+    }
+];
+
+module.exports = {
+    'zh-CN':{
+        menuData: menuDataZh
+    },
+    'en':{
+        menuData: menuDataEn
+    }
+}

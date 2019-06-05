@@ -1,9 +1,11 @@
 <template>
     <div class="about">
-        About Page
+        {{$t('title')}}
     </div>
 </template>
+
 <script>
+import i18n from './i18n'
 export default {
     name:'about',
     created(){
