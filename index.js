@@ -31,6 +31,7 @@ if(config.init){
     //循环拷贝文件
     function traver(dir,callback,loopPath){
         fs.readdirSync(dir).forEach(function(file){
+            var pathname = path.join(dir, file);
             //文件夹
             if(fs.statSync(pathname).isDirectory()){
                 if(file == 'coverage_temp'){
