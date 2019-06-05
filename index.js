@@ -56,7 +56,7 @@ if(config.init){
         })
     }
 
-    var dir = path.join(__dirname,"templates","");//需要拷贝的文件夹
+    var dir = path.join(__dirname,"template","");//需要拷贝的文件夹
     traver(dir,function(pathname,file,loopPath){
         if(file == "font.ttf" || file == "aaa.ttf"){
             write(loopPath+'/'+file,fs.readFileSync(pathname))
