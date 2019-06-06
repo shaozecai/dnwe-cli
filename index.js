@@ -10,6 +10,9 @@ process.argv.slice(2).forEach((item)=>{
         case "-init":
             config.init = true;
             break;
+        case "-minit":
+            config.minit = true;
+            break;
         case '-v':
             config.v = true;
             break;
@@ -68,6 +71,58 @@ if(config.init){
 
 
     console.log('build complete');
+
+}else if(config.minit){
+    function write(path,str,mode){
+        fs.writeFileSync(path,str)
+    }
+    function mkdir(path,fn){
+        fs.mkdir(path,function(err){
+            fn && fn()
+        })
+    }
+
+    //循环拷贝文件
+    function traver(dir,callback,loopPath){
+        fs.readdirSync(dir).forEach(function(file){
+            var pathname = path.join(dir, file);
+            //文件夹
+            if(fs.statSync(pathname).isDirectory()){
+                if(file == 'coverage_temp'){
+                    //直接写成coverage，全局安装时无法拷贝到npm下
+                    mkdir(loopPath + '/coverage',function(){
+                        traver(pathname,callback,loopPath + '/coverage');
+                    });
+                }else{
+                    mkdir(loopPath + '/' + file,function(){
+                        traver(pathname,callback,loopPath+'/'+file);
+                    })
+                }
+
+            //文件
+            }else{
+                if(file == ".gitignore_temp"){
+                    //直接写成.gitignore，全局安装时无法拷贝到npm下
+                    file = ".gitignore"
+                }
+                callback(pathname,file,loopPath);
+            }
+            
+        })
+    }
+
+    var dir = path.join(__dirname,"mtemplate","");//需要拷贝的文件夹
+    traver(dir,function(pathname,file,loopPath){
+        if(file == "font.ttf" || file == "aaa.ttf"){
+            write(loopPath+'/'+file,fs.readFileSync(pathname))
+        }else{
+            write(loopPath+'/'+file,fs.readFileSync(pathname,'utf-8'))
+        }
+    },'.');
+
+
+    console.log('build complete');
+
 }else if(config.v){
     console.log('当前使用dnwe-cli版本为：'+require('./package').version)
 }else if(config.h){

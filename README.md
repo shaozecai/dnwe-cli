@@ -16,6 +16,9 @@ cd demo
 #构建PC端初始化工程
 dnwe -init
 
+#构建移动端初始化工程
+dnwe -minit
+
 #安装项目依赖
 npm install
 
@@ -43,4 +46,4 @@ dnwe -h
 - Web site - https://shaozecai.com
 
 ## Version
-- v1.0.3 支持多语种
+- v1.0.4 支持构建移动端初始化工程
