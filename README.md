@@ -42,7 +42,7 @@ dnwe -h
 - [Vuex-i18n](https://github.com/dkfbasel/vuex-i18n#readme) - We are big fans of the awesome vue, vuex and vue-router libraries and were just looking for an easy to use internationalization plugin, employing as much of the "standard library" as possible.
 
 ## Author
-- Email - admin@shaozeci.com
+- Email - shaozecai@shaozecai.com
 - Web site - https://shaozecai.com
 
 ## Version
